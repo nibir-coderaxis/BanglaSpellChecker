@@ -1,13 +1,35 @@
+import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String bangla[]={"আকাশ","বাতাস","সূর্য","তাঁরা"};
-		Trie trie=new Trie();
-		for(int i=0;i<bangla.length;i++)
-			trie.insert(bangla[i]);
-		System.out.println((trie.search("বাতাস")==true)?"Found":"Not Found");
+		
+		TernarySearchTree TSTTree=new TernarySearchTree();
+		String path="dictionary.txt";
+		try {
+			Scanner scanner=new Scanner(new File(path));
+			while(scanner.hasNextLine()){
+				//System.out.println(scanner.nextLine());
+				TSTTree.insert(scanner.nextLine());
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String word="আক";
+		if(TernarySearchTree.search(word)){
+			System.out.println("Spelling is right");
+		}
+		else{
+			System.out.println(word);
+			List<String> suggestions=new Checker().edit1(word);
+			System.out.println("Suggestions are : "+suggestions);
+		}
 	}
-
 }
