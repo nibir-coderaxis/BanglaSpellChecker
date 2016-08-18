@@ -22,14 +22,17 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String word="আক";
-		if(TernarySearchTree.search(word)){
-			System.out.println("Spelling is right");
-		}
-		else{
-			System.out.println(word);
-			List<String> suggestions=new Checker().edit1(word);
-			System.out.println("Suggestions are : "+suggestions);
+		Scanner cin=new Scanner(System.in);
+		while(true){
+			String word=cin.nextLine();
+			if(TernarySearchTree.search(word)){
+				System.out.println("Spelling is right");
+			}
+			else{
+				System.out.println(word);
+				List<String> suggestions=new Checker().edit1(word);
+				System.out.println("Suggestions are : "+suggestions);
+			}
 		}
 	}
 }
